@@ -1,3 +1,27 @@
+.predict-form-container{
+    max-width: 65%;
+    padding: 5rem;
+    padding-top: 2.5rem !important;
+    border-color: whitesmoke;
+    margin-top: 2rem;
+}
+
+.predict-title{
+    text-align: center;
+    font-size:40px;
+    font-weight: bold;
+}
+
 .form-group{
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
+}
+
+.submit-button{
+    display: flex;
+    justify-content: end;
+    margin-top: 0.5rem;
+}
+
+label{
+    padding-bottom: 0.5rem;
 }

@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="./predict.css" />
   </head>
   <body>
-    <div class="container mt-5 flex">
-      <h2 class="mb-4">AutoPrice Insights</h2>
+    <div class="predict-form-container container">
+      <h2 class="predict-title mb-4">AutoPrice Insights</h2>
       <form>
         <div class="form-group">
           <label for="fullName">Brand</label>
@@ -64,14 +64,61 @@
         </div>
         <div class="form-group">
           <label for="comments">Engine Details</label>
-          <textarea
+          <input
+            type="text"
             class="form-control"
-            id="comments"
-            rows="3"
+            id="fullName"
             placeholder="Enter the engine details"
-          ></textarea>
+          />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+          <label for="fullName">Transmission</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            placeholder="Enter your full name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="fullName">Any Accidents?</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            placeholder="Enter your full name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="fullName">Clean title?</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            placeholder="Enter your full name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="fullName">External color</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            placeholder="Enter your full name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="fullName">Internal Color</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            placeholder="Enter your full name"
+          />
+        </div>
+        <div class="submit-button">
+          <button type="submit" class="btn btn-success">Predict</button>
+        </div>
       </form>
     </div>
     <script
