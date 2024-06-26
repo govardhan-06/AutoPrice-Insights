@@ -6,4 +6,5 @@ dataclasses
 scikit-learn
 category_encoders
 dill
+xgboost
 #-e .
