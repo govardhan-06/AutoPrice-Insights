@@ -4,4 +4,6 @@ matplotlib
 seaborn
 dataclasses
 scikit-learn
+category_encoders
+dill
 #-e .
