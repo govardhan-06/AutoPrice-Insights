@@ -66,8 +66,8 @@ class ModelTrainer:
                                 'learning_rate': [.1, .01, 0.5, .001],
                                 'n_estimators': [8, 16, 32, 64, 128, 256]
                             }
-                        }
-            
+                    }
+           
             model_results=evaluate_Model(
                 X_train=X_train,
                 X_test=X_test,

@@ -1,5 +1,5 @@
 from flask import Flask,request,render_template
-
+import os
 from src.pipeline.test_pipeline import PredictPipeline,UserInputData
 from src.pipeline.train_pipeline import TrainPipeline
 from src.utils import get_column_categories
@@ -28,10 +28,6 @@ def predict():
         )
 
         dataframe=userinput.createDataFrame()
-        print("\n\n")
-        print(dataframe.dtypes.values)
-        print(request.form)
-        print("\n\n")
 
         model=PredictPipeline()
         y_pred=model.predict(dataframe)
@@ -39,9 +35,10 @@ def predict():
         return render_template('predict.html',predict=y_pred[0])
     
     else:
-        trainModel=TrainPipeline()
-        trainModel.initiate_training_phase()
-
+        if os.path.isdir('artifacts/'):
+            trainModel=TrainPipeline()
+            trainModel.initiate_training_phase()
+        
         column_cat=get_column_categories()
         return render_template('predict.html',categories=column_cat)
     

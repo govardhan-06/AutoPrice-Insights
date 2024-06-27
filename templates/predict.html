@@ -17,24 +17,24 @@
       <h2 class="predict-title mb-4">AutoPrice Insights</h2>
       {%if predict%}
       <button
-        class="btn btn-secondary"
+        class="btn btn-secondary mb-3"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#collapseExample"
         aria-expanded="false"
         aria-controls="collapseExample"
       >
-        Check out the price
+        Show Prediction
       </button>
       <div class="collapse" id="collapseExample">
         <div class="card card-body mb-2s">
           Approximate cost of your car: {{predict}} $
         </div>
       </div>
-      {%endif%}
+      {%else%}
       <form action="{{ url_for('predict')}}" method="post">
         <div class="form-group">
-          <label for="fullName">Brand</label>
+          <label for="Brand">Brand</label>
           <select
             class="form-select"
             aria-label="Default select example"
@@ -67,7 +67,7 @@
             type="number"
             class="form-control"
             placeholder="Enter your car mileage in miles"
-            name="'mileage"
+            name="mileage"
             required
           />
         </div>
@@ -186,6 +186,7 @@
           <button type="submit" class="btn btn-success">Predict</button>
         </div>
       </form>
+      {%endif%}
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

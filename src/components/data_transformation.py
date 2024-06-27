@@ -49,9 +49,15 @@ class MileageTransformer(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        X['milage'] = X['milage'].str.replace("mi.", "").str.replace(",", "").astype(int)
+        X['milage'] = X['milage'].str.replace("mi.", "").str.replace(",", "")
+        X['milage'] = pd.to_numeric(X['milage'], errors='coerce').fillna(0).astype(int)
         X['milage'] = np.where(X['milage'] == 0, 1, X['milage'])  # Replace 0 with 1 to avoid log(0)
-        X['milage'],_ = stat.boxcox(X['milage'])
+        if len(X['milage'])==1: ##For user input data only
+            transform=[X['milage'][0],1]
+            transform,_ = stat.boxcox(transform)
+            X['milage']=transform[0]
+        else:
+            X['milage'],_ = stat.boxcox(X['milage'])
         return X
 
 #custom transformer for fuel_type column

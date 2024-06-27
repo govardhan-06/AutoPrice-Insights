@@ -21,9 +21,6 @@ class PredictPipeline:
             logging.info("Applying the user input data onto the model")
 
             features_scaled=preprocessor.transform(features)
-
-            logging.info("User Input Data Scaled successfully")
-
             pred=model.predict(features_scaled)
             
             logging.info("Model prediction generated")
