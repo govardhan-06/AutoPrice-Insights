@@ -80,20 +80,17 @@ class ModelTrainer:
             best_model_score=max(sorted(model_results.values()))
             best_model_name=[model for model, score in model_results.items() if score==best_model_score]
 
-            if best_model_score<=0.3:
-                print("No model with accuracy greater than 30%")
-                return model_results
-            else:
-                logging.info(f"Model training successfull; (Model in use: {best_model_name})")
-                best_model=models[best_model_name]
+        
+            logging.info(f"Model training successfull; (Model in use: {best_model_name})")
+            best_model=models[best_model_name]
 
-                save_object(
-                    self.config.model_path,
-                    best_model
-                )
+            save_object(
+                self.config.model_path,
+                best_model
+            )
 
-                y_pred=best_model.predict(X_test)
-                return {best_model_name:r2_score(y_test,y_pred)}
+            y_pred=best_model.predict(X_test)
+            return {best_model_name:r2_score(y_test,y_pred)}
 
         except Exception as e:
             raise customException(e,sys)
