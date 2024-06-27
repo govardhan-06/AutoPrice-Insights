@@ -1,6 +1,7 @@
 from flask import Flask,request,render_template
 
 from src.pipeline.test_pipeline import PredictPipeline,UserInputData
+from src.pipeline.train_pipeline import TrainPipeline
 from src.utils import get_column_categories
 
 app=Flask(__name__)
@@ -16,7 +17,7 @@ def predict():
             brand=request.form.get('brand'),
             model=request.form.get('model'),
             model_year=request.form.get('model_year'),
-            mileage=str(request.form.get('mileage')),
+            mileage=request.form.get('mileage'),
             fuel_type=request.form.get('fuel_type'),
             transmission=request.form.get('transmission'),
             engine=request.form.get('engine'),
@@ -27,7 +28,10 @@ def predict():
         )
 
         dataframe=userinput.createDataFrame()
-        print(dataframe)
+        print("\n\n")
+        print(dataframe.dtypes.values)
+        print(request.form)
+        print("\n\n")
 
         model=PredictPipeline()
         y_pred=model.predict(dataframe)
@@ -35,8 +39,10 @@ def predict():
         return render_template('predict.html',predict=y_pred[0])
     
     else:
+        trainModel=TrainPipeline()
+        trainModel.initiate_training_phase()
+
         column_cat=get_column_categories()
-        print(column_cat)
         return render_template('predict.html',categories=column_cat)
     
 if __name__=="__main__":

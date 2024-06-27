@@ -17,7 +17,6 @@ from category_encoders import TargetEncoder
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder, LabelEncoder
 from sklearn.base import BaseEstimator, TransformerMixin #for custom column transformer
 
-
 @dataclass
 class DataTransformationConfig:
     preprocessor_obj_file_path=os.path.join("artifacts","preprocessor.pkl")
@@ -30,7 +29,7 @@ class AgeTransformer(BaseEstimator, TransformerMixin):
     def transform(self, X):
         now = datetime.datetime.now()
         current_year = now.year
-        X['Age'] = current_year - X['model_year']
+        X['Age'] = current_year - (X['model_year'].astype(int))
         X['Age'] = np.where(X['Age']==0,1,X['Age']) # Replace 0 by 1 to prevent log(0) error
         X['Age'] = np.log(X['Age'])
         return X.drop(columns=['model_year'])
@@ -50,7 +49,7 @@ class MileageTransformer(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        X['milage'] = [int(i.strip("mi.").replace(",","")) for i in X['milage']]
+        X['milage'] = X['milage'].str.replace("mi.", "").str.replace(",", "").astype(int)
         X['milage'] = np.where(X['milage'] == 0, 1, X['milage'])  # Replace 0 with 1 to avoid log(0)
         X['milage'],_ = stat.boxcox(X['milage'])
         return X

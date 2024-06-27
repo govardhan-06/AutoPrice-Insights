@@ -36,7 +36,7 @@ class UserInputData:
     def __init__(self,
                  brand:str,
                  model:str,
-                 model_year:int,
+                 model_year:str,
                  mileage:str,
                  fuel_type:str,
                  engine:str,

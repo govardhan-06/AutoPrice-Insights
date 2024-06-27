@@ -40,20 +40,11 @@ class DataIngestion:
             test_dataset.to_csv(self.config.test_data_path,index=False,header=True)
             logging.info("Train and Test data has been created")
             logging.info("Data Ingestion phase completed successfully")
-
+            
             return(
                 train_dataset,
                 test_dataset
             )
+        
         except Exception as e:
             raise customException(e,sys)
-
-if __name__=="__main__":
-    data_ingestion = DataIngestion()
-    train_data,test_data=data_ingestion.dataSplitter()
-
-    data_transformation=DataTransformation()
-    train_arr,test_arr,processor=data_transformation.intiate_dataTransform()
-
-    model_trainer=ModelTrainer()
-    print(model_trainer.intiate_model_trainer(train_arr,test_arr))

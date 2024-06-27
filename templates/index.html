@@ -30,12 +30,8 @@
           ahead with confidence.
         </p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button
-            href="{{ url_for('predict')}}"
-            type="btn"
-            class="btn btn-outline-light btn-lg px-4 gap-3"
-          >
-            Predict
+          <button type="btn" class="btn btn-outline-light btn-lg px-4 gap-3">
+            <a href="{{url_for('predict')}}">Predict</a>
           </button>
         </div>
       </div>

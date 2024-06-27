@@ -39,6 +39,7 @@
             class="form-select"
             aria-label="Default select example"
             name="brand"
+            required
           >
             <option selected>Open this select menu</option>
             {%for i in categories['brand']%}
@@ -52,6 +53,7 @@
             class="form-select"
             aria-label="Default select example"
             name="model"
+            required
           >
             <option selected>Open this select menu</option>
             {%for i in categories['model']%}
@@ -66,6 +68,7 @@
             class="form-control"
             placeholder="Enter your car mileage in miles"
             name="'mileage"
+            required
           />
         </div>
         <div class="form-group">
@@ -78,6 +81,7 @@
             class="form-control"
             placeholder="Enter the year of purchase"
             name="model_year"
+            required
           />
         </div>
         <div class="form-group">
@@ -86,6 +90,7 @@
             class="form-select"
             aria-label="Default select example"
             name="fuel_type"
+            required
           >
             <option selected>Open this select menu</option>
             {%for i in categories['fuel_type']%}
@@ -99,6 +104,7 @@
             class="form-select"
             aria-label="Default select example"
             name="engine"
+            required
           >
             <option selected>Open this select menu</option>
             {%for i in categories['engine']%}
@@ -112,6 +118,7 @@
             class="form-select"
             aria-label="Default select example"
             name="transmission"
+            required
           >
             <option selected>Open this select menu</option>
             {%for i in categories['transmission']%}
@@ -125,6 +132,7 @@
             class="form-select"
             aria-label="Default select example"
             name="accident"
+            required
           >
             <option selected>Open this select menu</option>
             <option value="At least 1 accident or damage reported">
@@ -139,6 +147,7 @@
             class="form-select"
             aria-label="Default select example"
             name="clean_title"
+            required
           >
             <option selected>Open this select menu</option>
             <option value="Yes">Yes</option>
@@ -151,6 +160,7 @@
             class="form-select"
             aria-label="Default select example"
             name="ext_col"
+            required
           >
             <option selected>Open this select menu</option>
             {%for i in categories['ext_col']%}
@@ -164,6 +174,7 @@
             class="form-select"
             aria-label="Default select example"
             name="int_col"
+            required
           >
             <option selected>Open this select menu</option>
             {%for i in categories['int_col']%}

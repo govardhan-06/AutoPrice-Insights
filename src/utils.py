@@ -24,6 +24,7 @@ def save_object(file_path,obj):
 def evaluate_Model(X_train,X_test,y_train,y_test,models,params):
     try:
         report={}
+        logging.info("Hyperparameter tuning...")
         for i in range(len(list(models))):
             model=list(models.values())[i]
             param=params[list(models.keys())[i]]
@@ -42,7 +43,7 @@ def evaluate_Model(X_train,X_test,y_train,y_test,models,params):
             test_model_acc=r2_score(y_test,y_test_pred)
 
             report[list(models.keys())[i]]=test_model_acc
-        
+        logging.info("Hyperparamter tuning completed")
         return report
 
     except Exception as e:
