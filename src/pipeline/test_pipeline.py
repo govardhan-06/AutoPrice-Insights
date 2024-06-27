@@ -72,7 +72,7 @@ class UserInputData:
                 "ext_col":[self.ext_col],
                 "int_col":[self.int_col],
                 "accident":[self.accident],
-                "clean_title":[self.clean_title]
+                "clean_title":[self.clean_title],
             }
 
             logging.info("Created user input dataframe")
