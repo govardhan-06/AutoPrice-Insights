@@ -7,4 +7,5 @@ scikit-learn
 category_encoders
 dill
 xgboost
+flask
 #-e .

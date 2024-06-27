@@ -1,6 +1,7 @@
 import os
 import sys
 import dill
+import pandas as pd
 
 from src.exception import customException
 from src.logger import logging
@@ -51,6 +52,33 @@ def load_object(file_path):
     try:
         with open(file_path,'rb') as file_obj:
             return dill.load(file_obj)
+    except Exception as e:
+        raise customException(e,sys)
+
+def get_column_categories():
+    try:
+        raw_data_path=os.path.join("artifacts","raw_data.csv")
+        df=pd.read_csv(raw_data_path)
+
+        # Categories inside different categorical columns
+        brand=df['brand'].value_counts().index.tolist()
+        model=df['model'].value_counts().index.tolist()
+        fuel_type=df['fuel_type'].value_counts().index.tolist()
+        engine=df['engine'].value_counts().index.tolist()
+        transmission=df['transmission'].value_counts().index.tolist()
+        ext_col=df['ext_col'].value_counts().index.tolist()
+        int_col=df['int_col'].value_counts().index.tolist()
+
+        return({
+            "brand":brand,
+            "model":model,
+            "fuel_type":fuel_type,
+            "engine":engine,
+            "transmission":transmission,
+            "ext_col":ext_col,
+            "int_col":int_col
+        })
+
     except Exception as e:
         raise customException(e,sys)
     

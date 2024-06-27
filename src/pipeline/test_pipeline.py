@@ -12,15 +12,20 @@ class PredictPipeline:
     
     def predict(self,features):
         try:
-            model_dir = os.path.join("artifacts","model.pkl")
+            model_dir = "artifacts/model.pkl"
             model = load_object(file_path=model_dir)
 
             preprocessor_path=os.path.join("artifacts","preprocessor.pkl")
             preprocessor = load_object(file_path=preprocessor_path)
             
             logging.info("Applying the user input data onto the model")
+
             features_scaled=preprocessor.transform(features)
+
+            logging.info("User Input Data Scaled successfully")
+
             pred=model.predict(features_scaled)
+            
             logging.info("Model prediction generated")
 
             return pred
@@ -57,17 +62,17 @@ class UserInputData:
         try:
             logging.info("Preparing user input data as dataframe")
             user_input={
-                "brand":self.brand,
-                "model":self.model,
-                "model_year":self.model_year,
-                "mileage":self.mileage,
-                "fuel_type":self.fuel_type,
-                "engine":self.engine,
-                "transmission":self.transmission,
-                "ext_col":self.ext_col,
-                "int_col":self.int_col,
-                "accident":self.accident,
-                "clean_title":self.clean_title
+                "brand":[self.brand],
+                "model":[self.model],
+                "model_year":[self.model_year],
+                "milage":[self.mileage],
+                "fuel_type":[self.fuel_type],
+                "engine":[self.engine],
+                "transmission":[self.transmission],
+                "ext_col":[self.ext_col],
+                "int_col":[self.int_col],
+                "accident":[self.accident],
+                "clean_title":[self.clean_title]
             }
 
             logging.info("Created user input dataframe")

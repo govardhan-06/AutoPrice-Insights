@@ -78,7 +78,7 @@ class ModelTrainer:
             )
 
             best_model_score=max(sorted(model_results.values()))
-            best_model_name=[model for model, score in model_results.items() if score==best_model_score]
+            best_model_name=[model for model, score in model_results.items() if score==best_model_score][0]
 
         
             logging.info(f"Model training successfull; (Model in use: {best_model_name})")

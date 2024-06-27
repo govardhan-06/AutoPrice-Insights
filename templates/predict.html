@@ -10,29 +10,54 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./predict.css" />
+    <link rel="stylesheet" href="../static/css/predict.css" />
   </head>
   <body>
     <div class="predict-form-container container">
       <h2 class="predict-title mb-4">AutoPrice Insights</h2>
-      <form>
+      {%if predict%}
+      <button
+        class="btn btn-secondary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Check out the price
+      </button>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body mb-2s">
+          Approximate cost of your car: {{predict}} $
+        </div>
+      </div>
+      {%endif%}
+      <form action="{{ url_for('predict')}}" method="post">
         <div class="form-group">
           <label for="fullName">Brand</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fullName"
-            placeholder="Enter your full name"
-          />
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="brand"
+          >
+            <option selected>Open this select menu</option>
+            {%for i in categories['brand']%}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
         </div>
         <div class="form-group">
-          <label for="email">Model</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="Enter your email"
-          />
+          <label for="model">Model</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="model"
+          >
+            <option selected>Open this select menu</option>
+            {%for i in categories['model']%}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
         </div>
         <div class="form-group">
           <label for="phone">Mileage</label>
@@ -40,6 +65,7 @@
             type="number"
             class="form-control"
             placeholder="Enter your car mileage in miles"
+            name="'mileage"
           />
         </div>
         <div class="form-group">
@@ -51,70 +77,99 @@
             step="1"
             class="form-control"
             placeholder="Enter the year of purchase"
+            name="model_year"
           />
         </div>
         <div class="form-group">
-          <label for="city">Fuel Type</label>
-          <input
-            type="text"
-            class="form-control"
-            id="city"
-            placeholder="Enter the fuel type"
-          />
+          <label for="fuel_type">Fuel Type</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="fuel_type"
+          >
+            <option selected>Open this select menu</option>
+            {%for i in categories['fuel_type']%}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
         </div>
         <div class="form-group">
-          <label for="comments">Engine Details</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fullName"
-            placeholder="Enter the engine details"
-          />
+          <label for="engine">Engine Details</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="engine"
+          >
+            <option selected>Open this select menu</option>
+            {%for i in categories['engine']%}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
         </div>
         <div class="form-group">
-          <label for="fullName">Transmission</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fullName"
-            placeholder="Enter your full name"
-          />
+          <label for="transmission">Transmission</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="transmission"
+          >
+            <option selected>Open this select menu</option>
+            {%for i in categories['transmission']%}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
         </div>
         <div class="form-group">
-          <label for="fullName">Any Accidents?</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fullName"
-            placeholder="Enter your full name"
-          />
+          <label for="accident">Any Accidents?</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="accident"
+          >
+            <option selected>Open this select menu</option>
+            <option value="At least 1 accident or damage reported">
+              At least 1 accident or damage reported
+            </option>
+            <option value="None reported">None reported</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="fullName">Clean title?</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fullName"
-            placeholder="Enter your full name"
-          />
+          <label for="clean_title">Clean title?</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="clean_title"
+          >
+            <option selected>Open this select menu</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="fullName">External color</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fullName"
-            placeholder="Enter your full name"
-          />
+          <label for="ext_col">External color</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="ext_col"
+          >
+            <option selected>Open this select menu</option>
+            {%for i in categories['ext_col']%}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
         </div>
         <div class="form-group">
-          <label for="fullName">Internal Color</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fullName"
-            placeholder="Enter your full name"
-          />
+          <label for="int_col">Internal Color</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="int_col"
+          >
+            <option selected>Open this select menu</option>
+            {%for i in categories['int_col']%}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
         </div>
         <div class="submit-button">
           <button type="submit" class="btn btn-success">Predict</button>
